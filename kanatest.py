@@ -1,6 +1,8 @@
+# Import modules
 from random import randint
 
 def kanatest(type:int=None):
+    # Define answer sheets for hiragana and katakana
     kana_hiragana = {
         'a': 'あ',
         'i': 'い',
@@ -145,69 +147,136 @@ def kanatest(type:int=None):
         'wa': 'ワ',
         'wo': 'ヲ'
         }
-
+    
+    # Convert answer sheets into lists that can be chosen from
     hiragana = list(kana_hiragana)
     katakana = list(kana_katakana)
-    #id = randint(0, len(hiragana)-1)
-    #print(hiragana[id] + " " + kana_hiragana[hiragana[id]])
+    
+    # Reset count variable for scoring
     count = 0
+    
+    # Check which test has been selected
     if type == 0:
+        # Start the main test loop (Mixed)
         while True:
+            # Rnadomly choose whether the question will be a hiragana or katakana character
             kh = randint(0,1)
             if kh == 0:
+                # Select random hiragana character
                 id = randint(0, len(hiragana)-1)
-            #print(hiragana[id] + " " + kana_hiragana[hiragana[id]])
+                
+                # Display the randomly selected character
                 print("What is this Hiragana Character: {}".format(kana_hiragana[hiragana[id]]))
+                
+                # Request user's answer
                 answer = input("answer>")
+                
+                # Check whether the answer is correct
+                # TODO: Add case insensitivity
                 if answer == hiragana[id]:
                     print("世界！ (Correct)")
                     count += 1
                 else:
+                    # Print Result (Incorrect)
                     print("違います！ (Wrong)")
+                    
+                    # Display correct answer and score
                     print("The Answer was Actually {}".format(hiragana[id]))
                     print("You got {} Questions Correct".format(count))
+                    
+                    # End Test
                     break
             else:
+                # Select a random katakana character
                 id = randint(0, len(katakana)-1)
-            #print(hiragana[id] + " " + kana_hiragana[hiragana[id]])
+                
+                # Display the random character
                 print("What is this Katakana Character: {}".format(kana_katakana[katakana[id]]))
+                
+                # Request user's answer
+                # TODO: Add case insensitivity
                 answer = input("answer>")
+                
+                # Check if answer is correct
                 if answer == katakana[id]:
+                    # Display result (Correct)
                     print("世界！ (Correct)")
+                    
+                    # Increment score
                     count += 1
                 else:
+                    # Display result (Incorrect)
                     print("違います！ (Wrong)")
+                    
+                    # Display correct answer and score
                     print("The Answer was Actually {}".format(katakana[id]))
                     print("You got {} Questions Correct".format(count))
                     break
     elif type == 1:
+        # Start the main test loop (Hiragana)
         while True:
+            # Select a random hiragana character
             id = randint(0, len(hiragana)-1)
-                #print(hiragana[id] + " " + kana_hiragana[hiragana[id]])
+            
+            # Display random character
             print("What is this Hiragana Character: {}".format(kana_hiragana[hiragana[id]]))
+            
+            # Ask for user's answer
             answer = input("answer>")
+            
+            # Check if user's answer is correct
+            # TODO: Add case insensitivity
             if answer == hiragana[id]:
+                # Display result (Correct)
                 print("世界！ (Correct)")
+                
+                # Increment score
                 count += 1
             else:
+                # Display result (Incorrect)
                 print("違います！ (Wrong)")
+                
+                # Display correct answer and score
                 print("The Answer was Actually {}".format(hiragana[id]))
                 print("You got {} Questions Correct".format(count))
+                
+                # End test
                 break
     elif type == 2:
+        # Start test loop (Katakana)
         while True:
+            # Select a random katakana character
             id = randint(0, len(katakana)-1)
-            #print(hiragana[id] + " " + kana_hiragana[hiragana[id]])
+            
+            # Display the random character
             print("What is this Katakana Character: {}".format(kana_katakana[katakana[id]]))
+            
+            #Ask for user's answer
             answer = input("answer>")
+            
+            # Check if user's answer is correct
+            # TODO: Add case insensitivity
             if answer == katakana[id]:
+                # Display Result (Correct)
                 print("世界！ (Correct)")
+                
+                # Increment score
                 count += 1
             else:
+                # Display Result (Incorrect)
                 print("違います！ (Wrong)")
+                
+                # Print correct answer and score
                 print("The Answer was Actually {}".format(katakana[id]))
                 print("You got {} Questions Correct".format(count))
+                
+                # End test
                 break
+    # Check if a test has actually been sent to this file
     elif type is None:
+        # If not, return an error
+        # This error should never appear under normal operations
         raise Exception("No Test Type Passed")
+        
+    # Exit The Test function
     input("quit>")

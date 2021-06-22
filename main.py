@@ -1,6 +1,8 @@
+# Import modules
 from kanatest import kanatest
 from terminaltables import AsciiTable
 
+# Define main menu data
 body_data = [
     ['Selection', 'Option'],
     ['1', 'Take Hiragana Test'],
@@ -9,10 +11,16 @@ body_data = [
     ['q', 'quit']
     ]
 
+# Build the ASCII Table based on the main menu data
 body = AsciiTable(body_data)
 print(body.table)
 
+# Listen for user input
+# TODO: add user input cleaning
 selection = input("menu>")
+
+# Check if the input matches a specific pattern
+# TODO: add an else case
 if selection == "1":    
     kanatest(1)
 elif selection == "2":
