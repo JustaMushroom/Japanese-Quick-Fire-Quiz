@@ -1,6 +1,13 @@
 # Import modules
 from random import randint
 
+# Define clear function - clears the terminal display
+def clear():
+  if name == "nt":
+    _ = system("cls")
+  else:
+    _ = system("clear")
+
 def kanatest(type:int=None):
     # Define answer sheets for hiragana and katakana
     kana_hiragana = {

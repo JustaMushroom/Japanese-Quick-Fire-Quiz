@@ -2,6 +2,13 @@
 from kanatest import kanatest
 from terminaltables import AsciiTable
 
+# Define clear function - clears the terminal display
+def clear():
+  if name == "nt":
+    _ = system("cls")
+  else:
+    _ = system("clear")
+
 # Define main menu data
 body_data = [
     ['Selection', 'Option'],
@@ -13,6 +20,11 @@ body_data = [
 
 # Build the ASCII Table based on the main menu data
 body = AsciiTable(body_data)
+
+# Clear the terminal display
+clear()
+
+# Display the main menu data as a table
 print(body.table)
 
 # Listen for user input
