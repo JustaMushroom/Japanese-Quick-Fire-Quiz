@@ -1,5 +1,6 @@
 # Import modules
 from random import randint
+from terminaltables import AsciiTable
 
 # Define clear function - clears the terminal display
 def clear():
@@ -172,11 +173,28 @@ def kanatest(type:int=None):
                 # Select random hiragana character
                 id = randint(0, len(hiragana)-1)
                 
+                # Build the display information
+                body_data = [["Character", "Answer"]]
+                body_data.append([kana__hiragana[hiragana[id]], ""])
+                body = AsciiTable(body_data)
+
                 # Display the randomly selected character
-                print("What is this Hiragana Character: {}".format(kana_hiragana[hiragana[id]]))
+                print(body.table)
                 
                 # Request user's answer
                 answer = input("answer>")
+
+                # Change and rebuild the display information to show the answers
+                body_data[1][1] = answer
+                body_data[0].append("Correct Answer")
+                body_data[1].append(hiragana[id])
+                body = AsciiTable(body_data)
+
+                # Clear the screen
+                clear()
+
+                # Display the new display with the user's answer
+                print(body.table)
                 
                 # Check whether the answer is correct
                 # TODO: Add case insensitivity
