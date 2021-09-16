@@ -218,7 +218,7 @@ def kanatest(type:int=None):
                 
                 # Display the random character
                 body_data = [["Character", "Answer"]]
-                body_data.append([kana_katakana[id]],"")
+                body_data.append([kana_katakana[id],""])
                 body = AsciiTable(body_data)
                 #print("What is this Katakana Character: {}".format(kana_katakana[katakana[id]]))
                 
