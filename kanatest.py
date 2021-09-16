@@ -149,8 +149,8 @@ def kanatest(type:int=None):
         }
     
     # Convert answer sheets into lists that can be chosen from
-    hiragana = list(kana_hiragana)
-    katakana = list(kana_katakana)
+    hiragana = tuple(kana_hiragana)
+    katakana = tuple(kana_katakana)
     
     # Reset count variable for scoring
     count = 0
