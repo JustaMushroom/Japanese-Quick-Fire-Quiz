@@ -175,8 +175,7 @@ def kanatest(type:int=None):
                 answer = input("answer>")
                 
                 # Check whether the answer is correct
-                # TODO: Add case insensitivity
-                if answer == hiragana[id]:
+                if answer.upper() == hiragana[id].upper():
                     print("世界！ (Correct)")
                     count += 1
                 else:
@@ -201,7 +200,7 @@ def kanatest(type:int=None):
                 answer = input("answer>")
                 
                 # Check if answer is correct
-                if answer == katakana[id]:
+                if answer.upper() == katakana[id].upper():
                     # Display result (Correct)
                     print("世界！ (Correct)")
                     
@@ -228,8 +227,7 @@ def kanatest(type:int=None):
             answer = input("answer>")
             
             # Check if user's answer is correct
-            # TODO: Add case insensitivity
-            if answer == hiragana[id]:
+            if answer.upper() == hiragana[id].upper():
                 # Display result (Correct)
                 print("世界！ (Correct)")
                 
@@ -258,8 +256,7 @@ def kanatest(type:int=None):
             answer = input("answer>")
             
             # Check if user's answer is correct
-            # TODO: Add case insensitivity
-            if answer == katakana[id]:
+            if answer.upper() == katakana[id].upper():
                 # Display Result (Correct)
                 print("世界！ (Correct)")
                 
