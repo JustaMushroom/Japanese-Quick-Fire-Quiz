@@ -176,7 +176,7 @@ def kanatest(type:int=None):
                 
                 # Build the display information
                 body_data = [["Character", "Answer"]]
-                body_data.append([kana__hiragana[hiragana[id]], ""])
+                body_data.append([kana_hiragana[hiragana[id]], ""])
                 body = AsciiTable(body_data)
 
                 # Display the randomly selected character
