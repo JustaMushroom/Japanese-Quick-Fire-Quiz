@@ -216,12 +216,28 @@ def kanatest(type:int=None):
                 id = randint(0, len(katakana)-1)
                 
                 # Display the random character
-                print("What is this Katakana Character: {}".format(kana_katakana[katakana[id]]))
+                body_data = [["Character", "Answer"]]
+                body_data.append([kana_katakana[id]],"")
+                body = AsciiTable(body_data)
+                #print("What is this Katakana Character: {}".format(kana_katakana[katakana[id]]))
                 
+                clear()
+
+                print(body.table)
+
                 # Request user's answer
                 # TODO: Add case insensitivity
                 answer = input("answer>")
                 
+                body_data[1][1] = answer
+                body_data[0].append("Correct Answer")
+                body_data[1].append(katakana[id])
+                body = AsciiTable(body_data)
+
+                clear()
+
+                print(body.table)
+
                 # Check if answer is correct
                 if answer == katakana[id]:
                     # Display result (Correct)
