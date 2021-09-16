@@ -206,8 +206,7 @@ def kanatest(type:int=None):
                     # Print Result (Incorrect)
                     print("違います！ (Wrong)")
                     
-                    # Display correct answer and score
-                    print("The Answer was Actually {}".format(hiragana[id]))
+                    # Display score
                     print("You got {} Questions Correct".format(count))
                     
                     # End Test
@@ -216,27 +215,31 @@ def kanatest(type:int=None):
                 # Select a random katakana character
                 id = randint(0, len(katakana)-1)
                 
-                # Display the random character
+                # Build the display information
                 body_data = [["Character", "Answer"]]
                 body_data.append([kana_katakana[id],""])
                 body = AsciiTable(body_data)
-                #print("What is this Katakana Character: {}".format(kana_katakana[katakana[id]]))
                 
+                # Clear the screen
                 clear()
 
+                # Display the random character
                 print(body.table)
 
                 # Request user's answer
                 # TODO: Add case insensitivity
                 answer = input("answer>")
                 
+                # Change the display to show user's answer and the correct answer
                 body_data[1][1] = answer
                 body_data[0].append("Correct Answer")
                 body_data[1].append(katakana[id])
                 body = AsciiTable(body_data)
 
+                # Clear the screen
                 clear()
 
+                # Display the correct answer
                 print(body.table)
 
                 # Check if answer is correct
@@ -250,8 +253,7 @@ def kanatest(type:int=None):
                     # Display result (Incorrect)
                     print("違います！ (Wrong)")
                     
-                    # Display correct answer and score
-                    print("The Answer was Actually {}".format(katakana[id]))
+                    # Display score
                     print("You got {} Questions Correct".format(count))
                     break
     elif type == 1:
