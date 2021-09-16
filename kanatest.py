@@ -217,7 +217,7 @@ def kanatest(type:int=None):
                 
                 # Build the display information
                 body_data = [["Character", "Answer"]]
-                body_data.append([kana_katakana[id],""])
+                body_data.append([kana_katakana[katakana[id]], ""])
                 body = AsciiTable(body_data)
                 
                 # Clear the screen
@@ -310,7 +310,7 @@ def kanatest(type:int=None):
             
             # Build the display information
             body_data = [["Character", "Answer"]]
-            body_data.append([kana_katakana[id],""])
+            body_data.append([kana_katakana[katakana[id]], ""])
             body = AsciiTable(body_data)
             
             # Clear the screen
