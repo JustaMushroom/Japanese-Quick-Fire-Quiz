@@ -1,6 +1,9 @@
 # Import modules
 from random import randint
 
+class NoTestTypeError(Exception):
+    pass
+
 def kanatest(type:int=None):
     # Define answer sheets for hiragana and katakana
     kana_hiragana = {
@@ -276,7 +279,7 @@ def kanatest(type:int=None):
     elif type is None:
         # If not, return an error
         # This error should never appear under normal operations
-        raise Exception("No Test Type Passed")
+        raise NoTestTypeError("No Test Type Passed")
         
     # Exit The Test function
     input("quit>")
