@@ -259,16 +259,33 @@ def kanatest(type:int=None):
     elif type == 1:
         # Start the main test loop (Hiragana)
         while True:
-            # Select a random hiragana character
+           # Select random hiragana character
             id = randint(0, len(hiragana)-1)
             
-            # Display random character
-            print("What is this Hiragana Character: {}".format(kana_hiragana[hiragana[id]]))
+            # Build the display information
+            body_data = [["Character", "Answer"]]
+            body_data.append([kana_hiragana[hiragana[id]], ""])
+            body = AsciiTable(body_data)
+
+            # Display the randomly selected character
+            print(body.table)
             
-            # Ask for user's answer
+            # Request user's answer
             answer = input("answer>")
+
+            # Change and rebuild the display information to show the answers
+            body_data[1][1] = answer
+            body_data[0].append("Correct Answer")
+            body_data[1].append(hiragana[id])
+            body = AsciiTable(body_data)
+
+            # Clear the screen
+            clear()
+
+            # Display the new display with the user's answer
+            print(body.table)
             
-            # Check if user's answer is correct
+            # Check whether the answer is correct
             # TODO: Add case insensitivity
             if answer == hiragana[id]:
                 # Display result (Correct)
@@ -292,13 +309,34 @@ def kanatest(type:int=None):
             # Select a random katakana character
             id = randint(0, len(katakana)-1)
             
-            # Display the random character
-            print("What is this Katakana Character: {}".format(kana_katakana[katakana[id]]))
+            # Build the display information
+            body_data = [["Character", "Answer"]]
+            body_data.append([kana_katakana[id],""])
+            body = AsciiTable(body_data)
             
-            #Ask for user's answer
+            # Clear the screen
+            clear()
+
+            # Display the random character
+            print(body.table)
+
+            # Request user's answer
+            # TODO: Add case insensitivity
             answer = input("answer>")
             
-            # Check if user's answer is correct
+            # Change the display to show user's answer and the correct answer
+            body_data[1][1] = answer
+            body_data[0].append("Correct Answer")
+            body_data[1].append(katakana[id])
+            body = AsciiTable(body_data)
+
+            # Clear the screen
+            clear()
+
+            # Display the correct answer
+            print(body.table)
+
+            # Check if answer is correct
             # TODO: Add case insensitivity
             if answer == katakana[id]:
                 # Display Result (Correct)
