@@ -297,8 +297,7 @@ def kanatest(type:int=None):
                 # Display result (Incorrect)
                 print("違います！ (Wrong)")
                 
-                # Display correct answer and score
-                print("The Answer was Actually {}".format(hiragana[id]))
+                # Display score
                 print("You got {} Questions Correct".format(count))
                 
                 # End test
@@ -348,8 +347,7 @@ def kanatest(type:int=None):
                 # Display Result (Incorrect)
                 print("違います！ (Wrong)")
                 
-                # Print correct answer and score
-                print("The Answer was Actually {}".format(katakana[id]))
+                # Print score
                 print("You got {} Questions Correct".format(count))
                 
                 # End test
