@@ -1,6 +1,7 @@
 # Import modules
 from kanatest import kanatest
 from terminaltables import AsciiTable
+from os import system, name
 
 # Define clear function - clears the terminal display
 def clear():
