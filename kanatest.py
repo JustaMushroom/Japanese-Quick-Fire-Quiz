@@ -1,6 +1,7 @@
 # Import modules
 from random import randint
 from terminaltables import AsciiTable
+from os import name, system
 
 # Define clear function - clears the terminal display
 def clear():
