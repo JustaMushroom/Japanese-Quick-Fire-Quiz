@@ -175,11 +175,14 @@ def kanatest(type:int=None):
                 id = randint(0, len(hiragana)-1)
                 
                 # Build the display information
+                title_data = [["Mixed Test (Hiragana)"]]
                 body_data = [["Character", "Answer"]]
                 body_data.append([kana_hiragana[hiragana[id]], ""])
+                title = AsciiTable(title_data)
                 body = AsciiTable(body_data)
 
                 # Display the randomly selected character
+                print(title.table)
                 print(body.table)
                 
                 # Request user's answer
@@ -195,6 +198,7 @@ def kanatest(type:int=None):
                 clear()
 
                 # Display the new display with the user's answer
+                print(title.table)
                 print(body.table)
                 
                 # Check whether the answer is correct
@@ -216,14 +220,17 @@ def kanatest(type:int=None):
                 id = randint(0, len(katakana)-1)
                 
                 # Build the display information
+                title_data = [["Mixed Test (Katakana)"]]
                 body_data = [["Character", "Answer"]]
                 body_data.append([kana_katakana[katakana[id]], ""])
                 body = AsciiTable(body_data)
+                title = AsciiTable(title_data)
                 
                 # Clear the screen
                 clear()
 
                 # Display the random character
+                print(title.table)
                 print(body.table)
 
                 # Request user's answer
@@ -240,6 +247,7 @@ def kanatest(type:int=None):
                 clear()
 
                 # Display the correct answer
+                print(title.table)
                 print(body.table)
 
                 # Check if answer is correct
@@ -263,11 +271,14 @@ def kanatest(type:int=None):
             id = randint(0, len(hiragana)-1)
             
             # Build the display information
+            title_data = [["Hiragana Test"]]
             body_data = [["Character", "Answer"]]
             body_data.append([kana_hiragana[hiragana[id]], ""])
+            title = AsciiTable(title_data)
             body = AsciiTable(body_data)
 
             # Display the randomly selected character
+            print(title.table)
             print(body.table)
             
             # Request user's answer
@@ -283,6 +294,7 @@ def kanatest(type:int=None):
             clear()
 
             # Display the new display with the user's answer
+            print(title.table)
             print(body.table)
             
             # Check whether the answer is correct
@@ -309,14 +321,17 @@ def kanatest(type:int=None):
             id = randint(0, len(katakana)-1)
             
             # Build the display information
+            title_data = [["Katakana Test"]]
             body_data = [["Character", "Answer"]]
             body_data.append([kana_katakana[katakana[id]], ""])
             body = AsciiTable(body_data)
+            title = AsciiTable(title_data)
             
             # Clear the screen
             clear()
 
             # Display the random character
+            print(title.table)
             print(body.table)
 
             # Request user's answer
@@ -333,6 +348,7 @@ def kanatest(type:int=None):
             clear()
 
             # Display the correct answer
+            print(title.table)
             print(body.table)
 
             # Check if answer is correct
