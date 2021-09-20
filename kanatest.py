@@ -1,8 +1,21 @@
 # Import modules
 from random import randint
 
+# Define new exception type
 class NoTestTypeError(Exception):
     pass
+
+# Define user input clean function
+def cleanInput(text:str=None):
+    if text is None:
+        return Exception("No text passed to clean!")
+    
+    whitelist = "abcdefghijklmnopqrstuvwxyz"
+    output = ""
+    for letter in text:
+        if letter in whitelist:
+            output += letter
+    return output
 
 def kanatest(type:int=None):
     # Define answer sheets for hiragana and katakana
@@ -172,7 +185,7 @@ def kanatest(type:int=None):
                 print("What is this Hiragana Character: {}".format(kana_hiragana[hiragana[id]]))
                 
                 # Request user's answer
-                answer = input("answer>")
+                answer = cleanInput(input("answer>"))
                 
                 # Check whether the answer is correct
                 if answer.upper() == hiragana[id].upper():
@@ -197,7 +210,7 @@ def kanatest(type:int=None):
                 
                 # Request user's answer
                 # TODO: Add case insensitivity
-                answer = input("answer>")
+                answer = cleanInput(input("answer>"))
                 
                 # Check if answer is correct
                 if answer.upper() == katakana[id].upper():
@@ -224,7 +237,7 @@ def kanatest(type:int=None):
             print("What is this Hiragana Character: {}".format(kana_hiragana[hiragana[id]]))
             
             # Ask for user's answer
-            answer = input("answer>")
+            answer = cleanInput(input("answer>"))
             
             # Check if user's answer is correct
             if answer.upper() == hiragana[id].upper():
@@ -253,7 +266,7 @@ def kanatest(type:int=None):
             print("What is this Katakana Character: {}".format(kana_katakana[katakana[id]]))
             
             #Ask for user's answer
-            answer = input("answer>")
+            answer = cleanInput(input("answer>"))
             
             # Check if user's answer is correct
             if answer.upper() == katakana[id].upper():
