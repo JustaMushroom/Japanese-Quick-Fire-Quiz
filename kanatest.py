@@ -12,9 +12,13 @@ def cleanInput(text:str=None):
     
     whitelist = "abcdefghijklmnopqrstuvwxyz"
     output = ""
+    countLetter = 0
     for letter in text:
         if letter in whitelist:
             output += letter
+            countLetter += 1
+        if countLetter == 3:
+            break
     return output
 
 def kanatest(type:int=None):
