@@ -253,7 +253,6 @@ def kanatest(type:int=None):
                 print(body.table)
 
                 # Request user's answer
-                # TODO: Add case insensitivity
                 answer = cleanInput(input("answer>"))
                 
                 # Change the display to show user's answer and the correct answer
