@@ -32,7 +32,6 @@ while True:
     selection = input("menu>")
 
     # Check if the input matches a specific pattern
-    # TODO: add an else case
     if selection == "1":    
         kanatest(1)
     elif selection == "2":
@@ -41,3 +40,5 @@ while True:
         kanatest(0)
     elif selection.upper() == "Q":
         quit()
+    else:
+        print("No valid option Selected!")
