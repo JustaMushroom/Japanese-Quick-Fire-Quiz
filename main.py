@@ -22,10 +22,11 @@ body_data = [
 # Build the ASCII Table based on the main menu data
 body = AsciiTable(body_data)
 
-# Clear the terminal display
-clear()
-
 while True:
+    
+    # Clear the terminal display
+    clear()
+
     print(body.table)
     # Listen for user input
     # TODO: add user input cleaning
