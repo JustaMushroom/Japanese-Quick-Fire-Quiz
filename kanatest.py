@@ -1,5 +1,14 @@
 # Import modules
 from random import randint
+from terminaltables import AsciiTable
+from os import system, name
+
+# Define clear function - clears the terminal display
+def clear():
+  if name == "nt":
+    _ = system("cls")
+  else:
+    _ = system("clear")
 
 # Define new exception type
 class NoTestTypeError(Exception):
@@ -185,11 +194,32 @@ def kanatest(type:int=None):
                 # Select random hiragana character
                 id = randint(0, len(hiragana)-1)
                 
+                # Build the display information
+                title_data = [["Mixed Test (Hiragana)"]]
+                body_data = [["Character", "Answer"]]
+                body_data.append([kana_hiragana[hiragana[id]], ""])
+                title = AsciiTable(title_data)
+                body = AsciiTable(body_data)
+
                 # Display the randomly selected character
-                print("What is this Hiragana Character: {}".format(kana_hiragana[hiragana[id]]))
+                print(title.table)
+                print(body.table)
                 
                 # Request user's answer
                 answer = cleanInput(input("answer>"))
+
+                # Change and rebuild the display information to show the answers
+                body_data[1][1] = answer
+                body_data[0].append("Correct Answer")
+                body_data[1].append(hiragana[id])
+                body = AsciiTable(body_data)
+
+                # Clear the screen
+                clear()
+
+                # Display the new display with the user's answer
+                print(title.table)
+                print(body.table)
                 
                 # Check whether the answer is correct
                 if answer.upper() == hiragana[id].upper():
@@ -199,8 +229,7 @@ def kanatest(type:int=None):
                     # Print Result (Incorrect)
                     print("違います！ (Wrong)")
                     
-                    # Display correct answer and score
-                    print("The Answer was Actually {}".format(hiragana[id]))
+                    # Display score
                     print("You got {} Questions Correct".format(count))
                     
                     # End Test
@@ -209,13 +238,37 @@ def kanatest(type:int=None):
                 # Select a random katakana character
                 id = randint(0, len(katakana)-1)
                 
-                # Display the random character
-                print("What is this Katakana Character: {}".format(kana_katakana[katakana[id]]))
+                # Build the display information
+                title_data = [["Mixed Test (Katakana)"]]
+                body_data = [["Character", "Answer"]]
+                body_data.append([kana_katakana[katakana[id]], ""])
+                body = AsciiTable(body_data)
+                title = AsciiTable(title_data)
                 
+                # Clear the screen
+                clear()
+
+                # Display the random character
+                print(title.table)
+                print(body.table)
+
                 # Request user's answer
                 # TODO: Add case insensitivity
                 answer = cleanInput(input("answer>"))
                 
+                # Change the display to show user's answer and the correct answer
+                body_data[1][1] = answer
+                body_data[0].append("Correct Answer")
+                body_data[1].append(katakana[id])
+                body = AsciiTable(body_data)
+
+                # Clear the screen
+                clear()
+
+                # Display the correct answer
+                print(title.table)
+                print(body.table)
+
                 # Check if answer is correct
                 if answer.upper() == katakana[id].upper():
                     # Display result (Correct)
@@ -227,21 +280,41 @@ def kanatest(type:int=None):
                     # Display result (Incorrect)
                     print("違います！ (Wrong)")
                     
-                    # Display correct answer and score
-                    print("The Answer was Actually {}".format(katakana[id]))
+                    # Display score
                     print("You got {} Questions Correct".format(count))
                     break
     elif type == 1:
         # Start the main test loop (Hiragana)
         while True:
-            # Select a random hiragana character
+           # Select random hiragana character
             id = randint(0, len(hiragana)-1)
             
-            # Display random character
-            print("What is this Hiragana Character: {}".format(kana_hiragana[hiragana[id]]))
+            # Build the display information
+            title_data = [["Hiragana Test"]]
+            body_data = [["Character", "Answer"]]
+            body_data.append([kana_hiragana[hiragana[id]], ""])
+            title = AsciiTable(title_data)
+            body = AsciiTable(body_data)
+
+            # Display the randomly selected character
+            print(title.table)
+            print(body.table)
             
             # Ask for user's answer
             answer = cleanInput(input("answer>"))
+
+            # Change and rebuild the display information to show the answers
+            body_data[1][1] = answer
+            body_data[0].append("Correct Answer")
+            body_data[1].append(hiragana[id])
+            body = AsciiTable(body_data)
+
+            # Clear the screen
+            clear()
+
+            # Display the new display with the user's answer
+            print(title.table)
+            print(body.table)
             
             # Check if user's answer is correct
             if answer.upper() == hiragana[id].upper():
@@ -254,8 +327,7 @@ def kanatest(type:int=None):
                 # Display result (Incorrect)
                 print("違います！ (Wrong)")
                 
-                # Display correct answer and score
-                print("The Answer was Actually {}".format(hiragana[id]))
+                # Display score
                 print("You got {} Questions Correct".format(count))
                 
                 # End test
@@ -266,12 +338,35 @@ def kanatest(type:int=None):
             # Select a random katakana character
             id = randint(0, len(katakana)-1)
             
-            # Display the random character
-            print("What is this Katakana Character: {}".format(kana_katakana[katakana[id]]))
+            # Build the display information
+            title_data = [["Katakana Test"]]
+            body_data = [["Character", "Answer"]]
+            body_data.append([kana_katakana[katakana[id]], ""])
+            body = AsciiTable(body_data)
+            title = AsciiTable(title_data)
             
             #Ask for user's answer
             answer = cleanInput(input("answer>"))
             
+            # Clear the screen
+            clear()
+
+            # Display the random character
+            print(title.table)
+            
+            # Change the display to show user's answer and the correct answer
+            body_data[1][1] = answer
+            body_data[0].append("Correct Answer")
+            body_data[1].append(katakana[id])
+            body = AsciiTable(body_data)
+
+            # Clear the screen
+            clear()
+
+            # Display the correct answer
+            print(title.table)
+            print(body.table)
+
             # Check if user's answer is correct
             if answer.upper() == katakana[id].upper():
                 # Display Result (Correct)
@@ -283,8 +378,7 @@ def kanatest(type:int=None):
                 # Display Result (Incorrect)
                 print("違います！ (Wrong)")
                 
-                # Print correct answer and score
-                print("The Answer was Actually {}".format(katakana[id]))
+                # Print score
                 print("You got {} Questions Correct".format(count))
                 
                 # End test
