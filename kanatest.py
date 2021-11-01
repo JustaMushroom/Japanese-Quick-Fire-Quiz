@@ -10,6 +10,26 @@ def clear():
   else:
     _ = system("clear")
 
+# Define new exception type
+class NoTestTypeError(Exception):
+    pass
+
+# Define user input clean function
+def cleanInput(text:str=None):
+    if text is None:
+        return Exception("No text passed to clean!")
+    
+    whitelist = "abcdefghijklmnopqrstuvwxyz"
+    output = ""
+    countLetter = 0
+    for letter in text:
+        if letter in whitelist:
+            output += letter
+            countLetter += 1
+        if countLetter == 3:
+            break
+    return output
+
 def kanatest(type:int=None):
     # Define answer sheets for hiragana and katakana
     kana_hiragana = {
@@ -158,8 +178,8 @@ def kanatest(type:int=None):
         }
     
     # Convert answer sheets into lists that can be chosen from
-    hiragana = list(kana_hiragana)
-    katakana = list(kana_katakana)
+    hiragana = tuple(kana_hiragana)
+    katakana = tuple(kana_katakana)
     
     # Reset count variable for scoring
     count = 0
@@ -186,7 +206,7 @@ def kanatest(type:int=None):
                 print(body.table)
                 
                 # Request user's answer
-                answer = input("answer>")
+                answer = cleanInput(input("answer>"))
 
                 # Change and rebuild the display information to show the answers
                 body_data[1][1] = answer
@@ -202,8 +222,7 @@ def kanatest(type:int=None):
                 print(body.table)
                 
                 # Check whether the answer is correct
-                # TODO: Add case insensitivity
-                if answer == hiragana[id]:
+                if answer.upper() == hiragana[id].upper():
                     print("世界！ (Correct)")
                     count += 1
                 else:
@@ -234,8 +253,7 @@ def kanatest(type:int=None):
                 print(body.table)
 
                 # Request user's answer
-                # TODO: Add case insensitivity
-                answer = input("answer>")
+                answer = cleanInput(input("answer>"))
                 
                 # Change the display to show user's answer and the correct answer
                 body_data[1][1] = answer
@@ -251,7 +269,7 @@ def kanatest(type:int=None):
                 print(body.table)
 
                 # Check if answer is correct
-                if answer == katakana[id]:
+                if answer.upper() == katakana[id].upper():
                     # Display result (Correct)
                     print("世界！ (Correct)")
                     
@@ -281,8 +299,8 @@ def kanatest(type:int=None):
             print(title.table)
             print(body.table)
             
-            # Request user's answer
-            answer = input("answer>")
+            # Ask for user's answer
+            answer = cleanInput(input("answer>"))
 
             # Change and rebuild the display information to show the answers
             body_data[1][1] = answer
@@ -297,9 +315,8 @@ def kanatest(type:int=None):
             print(title.table)
             print(body.table)
             
-            # Check whether the answer is correct
-            # TODO: Add case insensitivity
-            if answer == hiragana[id]:
+            # Check if user's answer is correct
+            if answer.upper() == hiragana[id].upper():
                 # Display result (Correct)
                 print("世界！ (Correct)")
                 
@@ -327,16 +344,14 @@ def kanatest(type:int=None):
             body = AsciiTable(body_data)
             title = AsciiTable(title_data)
             
+            #Ask for user's answer
+            answer = cleanInput(input("answer>"))
+            
             # Clear the screen
             clear()
 
             # Display the random character
             print(title.table)
-            print(body.table)
-
-            # Request user's answer
-            # TODO: Add case insensitivity
-            answer = input("answer>")
             
             # Change the display to show user's answer and the correct answer
             body_data[1][1] = answer
@@ -351,9 +366,8 @@ def kanatest(type:int=None):
             print(title.table)
             print(body.table)
 
-            # Check if answer is correct
-            # TODO: Add case insensitivity
-            if answer == katakana[id]:
+            # Check if user's answer is correct
+            if answer.upper() == katakana[id].upper():
                 # Display Result (Correct)
                 print("世界！ (Correct)")
                 
@@ -372,7 +386,7 @@ def kanatest(type:int=None):
     elif type is None:
         # If not, return an error
         # This error should never appear under normal operations
-        raise Exception("No Test Type Passed")
+        raise NoTestTypeError("No Test Type Passed")
         
     # Exit The Test function
     input("quit>")
