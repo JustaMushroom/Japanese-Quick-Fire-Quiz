@@ -8,6 +8,7 @@ score = 0
 
 rootMenu = Tk()
 rootMenu.geometry("200x200")
+rootMenu.title("Main menu")
 rootKanaTest = Tk()
 rootKanaTest.withdraw()
 rootKanaTest.geometry("200x200")
@@ -37,6 +38,7 @@ rootMenu.protocol("WM_DELETE_WINDOW", on_close)
 rootKanaTest.protocol("WM_DELETE_WINDOW", on_close_test)
 
 def start_test(testType):
+    rootKanaTest.title(tests[testType])
     rootMenu.withdraw()
     rootKanaTest.deiconify()
     updateTest()
