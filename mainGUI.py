@@ -103,24 +103,24 @@ def updateTest():
     if testType == 0:
         id = randint(0, len(hiragana)-1)
         correctAnswer = hiragana[id].upper()
-        questiontitle.config(text="What is this Hiragana Character?")
+        questionTitle.config(text="What is this Hiragana Character?")
         question.config(text=kana_hiragana[hiragana[id]])
     elif testType == 1:
         id = randint(0, len(katakana)-1)
         correctAnswer = katakana[id].upper()
-        questiontitle.config(text="What is this Katakana Character?")
+        questionTitle.config(text="What is this Katakana Character?")
         question.config(text=kana_katakana[katakana[id]])
     elif testType == 2:
         kh = randint(0, 100) % 2
         if kh == 0:
             id = randint(0, len(hiragana)-1)
             correctAnswer = hiragana[id].upper()
-            questiontitle.config(text="What is this Hiragana Character?")
+            questionTitle.config(text="What is this Hiragana Character?")
             question.config(text=kana_hiragana[hiragana[id]])
         elif kh == 1:
             id = randint(0, len(katakana)-1)
             correctAnswer = katakana[id].upper()
-            questiontitle.config(text="What is this Katakana Character?")
+            questionTitle.config(text="What is this Katakana Character?")
             question.config(text=kana_katakana[katakana[id]])
     
     inputBox.delete(0, "end")
