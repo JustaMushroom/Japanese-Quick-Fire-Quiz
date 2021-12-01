@@ -62,7 +62,7 @@ def checkAnswer(event):
         messagebox.showinfo("Answer", "Correct Answer\nScore: {}".format(score))
         updateTest()
     elif answer.upper() != correctAnswer:
-        messagebox.showerror("Answer", "Incorrect Answer\nYour Score was {}".format(score))
+        messagebox.showerror("Answer", "Incorrect Answer, the answer was actually \"{}\"\nYour Score was {}".format(correctAnswer.lower(), score))
         end_test()
 
 def updateTest():
