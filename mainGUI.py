@@ -61,7 +61,6 @@ def checkAnswer(event):
         score += 1
         messagebox.showinfo("Answer", "Correct Answer\nScore: {}".format(score))
         updateTest()
-        inputBox.delete(0, "end")
     elif answer.upper() != correctAnswer:
         messagebox.showerror("Answer", "Incorrect Answer\nYour Score was {}".format(score))
         end_test()
@@ -91,6 +90,7 @@ def updateTest():
             correctAnswer = katakana[id].upper()
             question.config(text=kana_katakana[katakana[id]])
     
+    inputBox.delete(0, "end")
     rootKanaTest.focus_force()
     inputBox.focus()
 
