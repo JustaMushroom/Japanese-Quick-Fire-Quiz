@@ -41,8 +41,8 @@ def on_close_test():
 def timer_increment(term_event_in: Event):
     global timer
     while True:
-        sleep(1)
-        timer += 1
+        sleep(0.01)
+        timer += 0.01
 
         if term_event_in.is_set():
             term_event_in.clear()
@@ -55,6 +55,8 @@ rootKanaTest.protocol("WM_DELETE_WINDOW", on_close_test)
 
 def start_test(testType):
     global timer
+    global score
+    score = 0
     timer = 0
     timerThread: Thread = Thread(target=timer_increment, args=(timer_term,))
     rootKanaTest.title(tests[testType])
@@ -85,7 +87,7 @@ def checkAnswer(event):
         updateTest()
     elif answer.upper() != correctAnswer:
         timeMinutes = math.floor(timer/60)
-        timeSeconds = math.floor(timer - (timeMinutes * 60))
+        timeSeconds = round(timer - (timeMinutes * 60), 2)
         messagebox.showerror("Answer", "Incorrect Answer, the answer was actually \"{}\"\nYour Score was {}\nYour time was {} minutes and {} seconds".format(correctAnswer.lower(), score, timeMinutes, timeSeconds))
         end_test()
 
