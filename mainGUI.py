@@ -3,8 +3,13 @@ from tkinter import Tk, ttk, messagebox
 from functools import partial
 from testInfo import kana_hiragana, kana_katakana
 from random import randint
+from threading import Thread, Event
+import math
+from time import sleep
 
 score = 0
+timer = 0
+timer_term = Event()
 
 rootMenu = Tk()
 rootMenu.geometry("400x200")
@@ -33,19 +38,35 @@ def on_close_test():
 	if messagebox.askokcancel("Exit", "Do you want to exit the test?"):
 		end_test()
 
+def timer_increment(term_event_in: Event):
+    global timer
+    while True:
+        sleep(1)
+        timer += 1
+
+        if term_event_in.is_set():
+            term_event_in.clear()
+            return
+
 rootMenu.protocol("WM_DELETE_WINDOW", on_close)
 
 rootKanaTest.protocol("WM_DELETE_WINDOW", on_close_test)
 
+
 def start_test(testType):
+    global timer
+    timer = 0
+    timerThread: Thread = Thread(target=timer_increment, args=(timer_term,))
     rootKanaTest.title(tests[testType])
     rootMenu.withdraw()
     rootKanaTest.deiconify()
     updateTest()
+    timerThread.start()
 
 def end_test():
     rootKanaTest.withdraw()
     rootMenu.deiconify()
+    timer_term.set()
 
 def button_click(test_type):
     global testType
@@ -56,13 +77,16 @@ def checkAnswer(event):
     answer = inputBox.get()
     global correctAnswer
     global score
+    global timer
 
     if answer.upper() == correctAnswer:
         score += 1
         messagebox.showinfo("Answer", "Correct Answer\nScore: {}".format(score))
         updateTest()
     elif answer.upper() != correctAnswer:
-        messagebox.showerror("Answer", "Incorrect Answer, the answer was actually \"{}\"\nYour Score was {}".format(correctAnswer.lower(), score))
+        timeMinutes = math.floor(timer/60)
+        timeSeconds = math.floor(timer - (timeMinutes * 60))
+        messagebox.showerror("Answer", "Incorrect Answer, the answer was actually \"{}\"\nYour Score was {}\nYour time was {} minutes and {} seconds".format(correctAnswer.lower(), score, timeMinutes, timeSeconds))
         end_test()
 
 def updateTest():
