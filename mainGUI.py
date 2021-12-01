@@ -97,7 +97,6 @@ def updateTest():
 
 for test in tests:
     testID = tests.index(test)
-    print(testID)
     button = ttk.Button(text=test, command=lambda x=testID: button_click(x)).pack()
 
 
