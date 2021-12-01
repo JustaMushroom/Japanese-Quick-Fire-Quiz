@@ -7,10 +7,12 @@ from random import randint
 score = 0
 
 rootMenu = Tk()
-rootMenu.geometry("200x300")
+rootMenu.geometry("200x200")
 rootKanaTest = Tk()
 rootKanaTest.withdraw()
-rootKanaTest.geometry("200x300")
+rootKanaTest.geometry("200x200")
+
+tk.Label(rootMenu, text="Please Choose a test to Continue").pack()
 
 question = tk.Label(rootKanaTest, text="Question Here", font=("Arial", 25))
 question.pack()
@@ -59,7 +61,7 @@ def checkAnswer(event):
         updateTest()
         inputBox.delete(0, "end")
     elif answer.upper() != correctAnswer:
-        messagebox.showinfo("Answer", "Incorrect Answer\nYour Score was {}".format(score))
+        messagebox.showerror("Answer", "Incorrect Answer\nYour Score was {}".format(score))
         end_test()
 
 def updateTest():
