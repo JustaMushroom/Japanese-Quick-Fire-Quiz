@@ -7,11 +7,11 @@ from random import randint
 score = 0
 
 rootMenu = Tk()
-rootMenu.geometry("200x200")
+rootMenu.geometry("400x200")
 rootMenu.title("Main menu")
 rootKanaTest = Tk()
 rootKanaTest.withdraw()
-rootKanaTest.geometry("200x200")
+rootKanaTest.geometry("400x200")
 
 tk.Label(rootMenu, text="Please Choose a test to Continue").pack()
 
