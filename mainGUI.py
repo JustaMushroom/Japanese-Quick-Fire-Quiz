@@ -20,6 +20,9 @@ rootKanaTest.geometry("400x200")
 
 tk.Label(rootMenu, text="Please Choose a test to Continue").pack()
 
+
+questionTitle = tk.Label(rootKanaTest, text="What is this character?")
+questionTitle.pack()
 question = tk.Label(rootKanaTest, text="Question Here", font=("Arial", 25))
 question.pack()
 
@@ -100,20 +103,24 @@ def updateTest():
     if testType == 0:
         id = randint(0, len(hiragana)-1)
         correctAnswer = hiragana[id].upper()
+        questiontitle.config(text="What is this Hiragana Character?")
         question.config(text=kana_hiragana[hiragana[id]])
     elif testType == 1:
         id = randint(0, len(katakana)-1)
         correctAnswer = katakana[id].upper()
+        questiontitle.config(text="What is this Katakana Character?")
         question.config(text=kana_katakana[katakana[id]])
     elif testType == 2:
         kh = randint(0, 100) % 2
         if kh == 0:
             id = randint(0, len(hiragana)-1)
             correctAnswer = hiragana[id].upper()
+            questiontitle.config(text="What is this Hiragana Character?")
             question.config(text=kana_hiragana[hiragana[id]])
         elif kh == 1:
             id = randint(0, len(katakana)-1)
             correctAnswer = katakana[id].upper()
+            questiontitle.config(text="What is this Katakana Character?")
             question.config(text=kana_katakana[katakana[id]])
     
     inputBox.delete(0, "end")
