@@ -34,9 +34,7 @@ jobs:
         uses: srggrs/assign-one-project-github-action@1.3.1
         if: |
           contains(github.event.issue.labels.*.name, 'enhancement') ||
-          contains(github.event.pull_request.labels.*.name, 'enhancement') ||
-          contains(github.event.issue.labels.*.name, 'bug')
+          contains(github.event.pull_request.labels.*.name, 'enhancement')
           
         with:
           project: 'https://github.com/JustaMushroom/Japanese-Quick-Fire-Quiz/projects/2'
-          column_name: "To do"
