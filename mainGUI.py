@@ -4,7 +4,7 @@ from random import randint
 from threading import Thread, Event
 from time import sleep
 from tkinter import Tk, ttk, messagebox
-
+from highscoreHandler import HighscoreHandler
 from testInfo import kana_hiragana, kana_katakana
 
 score = 0
@@ -33,6 +33,10 @@ inputBox.pack()
 tests = ["Hiragana Test", "Katakana Test", "Mixed Test"]
 testButtons = []
 
+highscores = HighscoreHandler()
+
+if len(highscores.contents) == 0:
+    highscores.generateContents(tests, [int for x in tests])
 
 def on_close():
     if messagebox.askokcancel("Exit", "Do you want to quit?"):
@@ -54,6 +58,11 @@ def timer_increment(term_event_in: Event):
         if term_event_in.is_set():
             term_event_in.clear()
             return
+
+def showHighscores():
+    highscorestr = highscores.getScoreString()
+
+    messagebox.showinfo("High Scores", "Here are the high scores\n" + highscorestr)
 
 
 rootMenu.protocol("WM_DELETE_WINDOW", on_close)
@@ -95,7 +104,10 @@ def checkAnswer(event):
     if answer.upper() == correctAnswer:
         score += 1
         messagebox.showinfo("Answer", "Correct Answer\nScore: {}".format(score))
-        updateTest()
+        try:
+            updateTest()
+        except RecursionError:
+            return()
     elif answer.upper() != correctAnswer:
         timeMinutes = math.floor(timer / 60)
         timeSeconds = round(timer - (timeMinutes * 60), 2)
@@ -103,6 +115,10 @@ def checkAnswer(event):
                              "Incorrect Answer, the answer was actually \"{}\"\nYour Score was {}\nYour time was {} "
                              "minutes and {} seconds".format(
                                  correctAnswer.lower(), score, timeMinutes, timeSeconds))
+        if score > highscores.contents[tests[testType]]:
+            messagebox.showinfo("High Score!", "New High Score!")
+            highscores.updateScore(tests[testType], score)
+            highscores.saveHighScores()
         end_test()
 
 
@@ -143,6 +159,8 @@ def updateTest():
 for test in tests:
     testID = tests.index(test)
     ttk.Button(text=test, command=lambda x=testID: button_click(x)).pack()
+
+ttk.Button(rootMenu, text="Show Highscores", command=showHighscores).pack()
 
 rootKanaTest.bind("<Return>", checkAnswer)
 
