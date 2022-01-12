@@ -112,7 +112,7 @@ def checkAnswer(event):
         timeMinutes = math.floor(timer / 60)
         timeSeconds = round(timer - (timeMinutes * 60), 2)
         messagebox.showerror("Answer",
-                             "Incorrect Answer, the answer was actually \"{}\"\nYour Score was {}\nYour time was {} "
+                             "Incorrect Answer, the answer was actually \"{}\"\nYour Score was {:,}\nYour time was {} "
                              "minutes and {} seconds".format(
                                  correctAnswer.lower(), score, timeMinutes, timeSeconds))
         if score > highscores.contents[tests[testType]]:
