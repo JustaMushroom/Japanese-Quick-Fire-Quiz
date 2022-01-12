@@ -116,7 +116,7 @@ def checkAnswer(event):
                              "minutes and {} seconds".format(
                                  correctAnswer.lower(), score, timeMinutes, timeSeconds))
         if score > highscores.contents[tests[testType]]:
-            messagebox.showinfo("High Score!", "New High Score!")
+            messagebox.showinfo("High Score!", "New High Score! Previous Highscore was {:,}.".format(highscores.getScores()[tests[testType]]))
             highscores.updateScore(tests[testType], score)
             highscores.saveHighScores()
         end_test()
