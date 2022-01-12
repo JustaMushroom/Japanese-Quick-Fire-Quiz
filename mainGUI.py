@@ -107,7 +107,7 @@ def checkAnswer(event):
         try:
             updateTest()
         except RecursionError:
-            return()
+            return
     elif answer.upper() != correctAnswer:
         timeMinutes = math.floor(timer / 60)
         timeSeconds = round(timer - (timeMinutes * 60), 2)
